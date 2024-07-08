@@ -1,6 +1,8 @@
 import { ClipboardCheck, TowerControl, ExternalLink, SlidersVertical, Search, Info } from "lucide-react";
 import Image from "next/image";
 import { ReactNode } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 export default function Home() {
   return (
@@ -52,7 +54,7 @@ export default function Home() {
                 <h1>
                   EHAM - AMS
                 </h1>
-                <Info size={18}/>
+                <Info size={18} />
               </div>
               <h2 className="text-[13px] text-slate-200">Aeropuerto Felipe Ángeles</h2>
               <h2 className="text-[13px] text-slate-200">Mexico City, Mexico</h2>
@@ -63,6 +65,15 @@ export default function Home() {
               <Search size={16} />
               <input type="text" placeholder="Search by ICAO code" className="bg-transparent w-full focus:outline-none" />
             </div>
+
+            <Tabs defaultValue="account" className="w-[400px]">
+              <TabsList className="bg-[#7f7f7f2e]">
+                <TabsTrigger className="data-[state=active]:bg-red-500" value="account">Account</TabsTrigger>
+                <TabsTrigger className="data-[state=active]:bg-red-500" value="password">Password</TabsTrigger>
+              </TabsList>
+              <TabsContent value="account">Make changes to your account here.</TabsContent>
+              <TabsContent value="password">Change your password here.</TabsContent>
+            </Tabs>
 
             <ul>
               <li>Home</li>
