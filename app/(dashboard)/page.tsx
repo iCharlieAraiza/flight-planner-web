@@ -75,11 +75,12 @@ export default function Home() {
               <TabsContent value="password">Change your password here.</TabsContent>
             </Tabs>
 
-            <ul>
-              <li>Home</li>
-              <li>Dashboard</li>
-              <li>Settings</li>
-            </ul>
+            <div className="flex flex-col gap-1">
+              <ChartList label="ILS 05R VOR" code="12-3" />
+              <ChartList label="ILS 05L CAT-3" code="12-4" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+            </div>
+
           </nav>
           <section className="flex-1 bg-blue-300 h-full">
             <h1 className="text-3xl">Dashboard</h1>
@@ -101,5 +102,14 @@ const MenuItem = ({ children, active }: { active?: boolean, children: ReactNode 
       className={`flex flex-col items-center justify-center gap-1 cursor-pointer py-2 hover:bg-[#3e5c72] ${active && 'bg-[#3e5c72] active'}`}>
       {children}
     </li>
+  )
+}
+
+const ChartList = ({label, code}:{label:string, code: string}) => {
+  return (
+    <div className="bg-slate-300/10 p-2 cursor-pointer hover:bg-slate-800/30 rounded-[2px]">
+      <h3 className="font-semibold">{label}</h3>
+      <p>{code}</p>
+    </div>
   )
 }
