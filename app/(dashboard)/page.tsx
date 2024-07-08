@@ -2,6 +2,7 @@ import { ClipboardCheck, TowerControl, ExternalLink, SlidersVertical, Search, In
 import Image from "next/image";
 import { ReactNode } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import clsx from "clsx";
 
 
 export default function Home() {
@@ -47,9 +48,12 @@ export default function Home() {
         </nav>
 
         <section className="flex h-full text-[13px]">
-          <nav className="w-60 md:w-64 lg:w-72 bg-[#234461] p-4">
+          
+          {/* Side description section */}
+
+          <nav className="w-60 md:w-64 lg:w-72 bg-[#1b3249] p-4 flex flex-col">
             <header className="text-center">
-              <div className="uppercase text-[19px] font-semibold bg-[#2d4c67] flex justify-between items-center px-2">
+              <div className="uppercase text-[19px] font-semibold bg-[#2d4c674f] flex justify-between items-center px-2">
                 <div></div>
                 <h1>
                   EHAM - AMS
@@ -75,14 +79,21 @@ export default function Home() {
               <TabsContent value="password">Change your password here.</TabsContent>
             </Tabs>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 flex-1 overflow-y-auto">
               <ChartList label="ILS 05R VOR" code="12-3" />
-              <ChartList label="ILS 05L CAT-3" code="12-4" />
+              <ChartList label="ILS 05L CAT-3" code="12-4" active={true} />
               <ChartList label="VFR 05R VOR" code="12-5" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+              <ChartList label="VFR 05R VOR" code="12-5" />
+
             </div>
 
           </nav>
-          <section className="flex-1 bg-blue-300 h-full">
+          <section className="flex-1 bg-[#132b42] h-full">
             <h1 className="text-3xl">Dashboard</h1>
             <p>Welcome to the dashboard</p>
             <Image src="/logo.svg" alt="Logo" width={200} height={200} />
@@ -99,15 +110,15 @@ export default function Home() {
 const MenuItem = ({ children, active }: { active?: boolean, children: ReactNode }) => {
   return (
     <li
-      className={`flex flex-col items-center justify-center gap-1 cursor-pointer py-2 hover:bg-[#3e5c72] ${active && 'bg-[#3e5c72] active'}`}>
+      className={`flex flex-col items-center justify-center gap-1 cursor-pointer py-2 hover:bg-[#3e5c72] ${active && 'bg-[#0099ff47] active'}`}>
       {children}
     </li>
   )
 }
 
-const ChartList = ({label, code}:{label:string, code: string}) => {
+const ChartList = ({label, code, active}:{label:string, code: string, active?:boolean}) => {
   return (
-    <div className="bg-slate-300/10 p-2 cursor-pointer hover:bg-slate-800/30 rounded-[2px]">
+    <div className={clsx(`bg-slate-300/10 p-2 cursor-pointer hover:bg-[#1e5788] rounded-[2px]`, active && 'bg-[#1e5788]')}>
       <h3 className="font-semibold">{label}</h3>
       <p>{code}</p>
     </div>
