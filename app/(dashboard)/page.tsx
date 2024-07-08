@@ -1,4 +1,4 @@
-import { ClipboardCheck } from "lucide-react";
+import { ClipboardCheck, TowerControl, ExternalLink, SlidersVertical, Search, Info } from "lucide-react";
 import Image from "next/image";
 import { ReactNode } from "react";
 
@@ -7,20 +7,21 @@ export default function Home() {
     <main className="w-screen h-screen bg-slate-500 flex overflow-hidden text-[11px]">
 
       {/* Sidebar */}
-
-      <aside className="w-16 bg-slate-400 h-full">
+      <aside className="w-16 bg-[#1E384F] h-full">
         <nav>
           <ul>
             <MenuItem active={true}>
-              <ClipboardCheck size={20} />
+              <ClipboardCheck size={22} />
               <p>Board</p>
             </MenuItem>
             <MenuItem>
-              <ClipboardCheck size={20} />
+              <TowerControl size={22} />
+              <span>Airport</span>
+            </MenuItem>
+            <MenuItem>
+              <ClipboardCheck size={22} />
               <span>Map</span>
             </MenuItem>
-            <li>Airport</li>
-            <li>Settings</li>
           </ul>
         </nav>
       </aside>
@@ -28,16 +29,41 @@ export default function Home() {
       {/* Main content section */}
 
       <section className="flex-1 bg-slate-300">
-        <nav className="flex bg-slate-700">
-          <ul className="flex">
-            <li>Home</li>
-            <li>Dashboard</li>
-            <li>Settings</li>
+        <nav className="flex bg-[#1E374F] justify-between">
+          <ul className="flex gap-2 text-[13px] p-2">
+            <li className="px-3 py-1 bg-[#3498DB] rounded">Home</li>
+            <li className="px-3 py-1 bg-[#43536a] rounded">Dashboard</li>
+          </ul>
+          <ul className="flex items-center p-2 gap-2">
+            <li className="bg-[#375777] rounded p-1">
+              <ExternalLink size={18} />
+            </li>
+            <li className="bg-[#375777] rounded p-1">
+              <SlidersVertical size={18} />
+            </li>
           </ul>
         </nav>
 
-        <section className="flex h-full">
-          <nav className="w-28 md:w-52 lg:w-60">
+        <section className="flex h-full text-[13px]">
+          <nav className="w-60 md:w-64 lg:w-72 bg-[#234461] p-4">
+            <header className="text-center">
+              <div className="uppercase text-[19px] font-semibold bg-[#2d4c67] flex justify-between items-center px-2">
+                <div></div>
+                <h1>
+                  EHAM - AMS
+                </h1>
+                <Info size={18}/>
+              </div>
+              <h2 className="text-[13px] text-slate-200">Aeropuerto Felipe Ángeles</h2>
+              <h2 className="text-[13px] text-slate-200">Mexico City, Mexico</h2>
+            </header>
+
+            {/* Search box */}
+            <div className="p-2 flex items-center gap-2 bg-white/15 rounded my-2">
+              <Search size={16} />
+              <input type="text" placeholder="Search by ICAO code" className="bg-transparent w-full focus:outline-none" />
+            </div>
+
             <ul>
               <li>Home</li>
               <li>Dashboard</li>
@@ -61,7 +87,7 @@ export default function Home() {
 const MenuItem = ({ children, active }: { active?: boolean, children: ReactNode }) => {
   return (
     <li
-      className={`flex flex-col items-center justify-center gap-1 cursor-pointer py-2 hover:bg-slate-600 ${active && 'bg-slate-600'}`}>
+      className={`flex flex-col items-center justify-center gap-1 cursor-pointer py-2 hover:bg-[#3e5c72] ${active && 'bg-[#3e5c72] active'}`}>
       {children}
     </li>
   )
