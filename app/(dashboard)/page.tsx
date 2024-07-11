@@ -1,16 +1,17 @@
 'use client';
 
 import { ClipboardCheck, TowerControl, ExternalLink, SlidersVertical, Search, Info, Plus, Minus } from "lucide-react";
-import Image from "next/image";
 import { ReactNode, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import clsx from "clsx";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 
 
 export default function Home() {
 
   const [zoom, setZoom] = useState(1)
+
 
   return (
     <main className="w-screen h-screen bg-slate-500 flex overflow-hidden text-[11px] select-none">
@@ -55,10 +56,10 @@ export default function Home() {
           </div>
 
           <ul className="flex items-center p-2 gap-2">
-            <li className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90" onClick={() => setZoom(zoom + 0.2)}>
+            <li className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90" onClick={() => setZoom(zoom + 0.1)}>
               <Plus size={18} />
             </li>
-            <li className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90" onClick={() => setZoom(zoom - 0.2)}>
+            <li className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90" onClick={() => setZoom(zoom - 0.1)}>
               <Minus size={18} />
             </li>
             <li className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
@@ -134,13 +135,18 @@ export default function Home() {
 
           </nav>
           <section className="flex-1 bg-[#0f2335] h-full w-full min-w-fit p-4 relative overflow-auto">
-            <div className="">
+            <TransformWrapper
+            >
+              <Controls />
+              <TransformComponent >
+                <img
+                  className="" style={{ transform: `scale(${zoom})` }}
+                  src="https://static.wixstatic.com/media/a27d24_3fc700c02ea24720adfc624bd1ed5d6c~mv2.jpg/v1/fill/w_901,h_669,al_c,q_85,enc_auto/a27d24_3fc700c02ea24720adfc624bd1ed5d6c~mv2.jpg"
+                  alt="Logo" />
+              </TransformComponent>
+            </TransformWrapper>
 
-            </div>
-            <img
-              className="h-full w-auto m-4 block mx-auto object-cover " style={{ transform: `scale(${zoom})` }}
-              src="https://static.wixstatic.com/media/a27d24_3fc700c02ea24720adfc624bd1ed5d6c~mv2.jpg/v1/fill/w_901,h_669,al_c,q_85,enc_auto/a27d24_3fc700c02ea24720adfc624bd1ed5d6c~mv2.jpg"
-              alt="Logo" />
+
           </section>
         </section>
       </section>
@@ -148,6 +154,18 @@ export default function Home() {
 
     </main>
   );
+}
+
+const Controls = () => {
+  const { zoomIn, zoomOut, resetTransform } = useControls();
+
+  return (
+    <div className="tools">
+      <button onClick={() => zoomIn()}>+</button>
+      <button onClick={() => zoomOut()}>-</button>
+      <button onClick={() => resetTransform()}>x</button>
+    </div>
+  )
 }
 
 

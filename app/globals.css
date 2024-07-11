@@ -82,3 +82,7 @@
   .active svg {
     color: #fada3d;
   }
+
+  .react-transform-wrapper {
+    width: 100%!important;
+  }
