@@ -1,6 +1,6 @@
 'use client';
 
-import { ClipboardCheck, TowerControl, ExternalLink, SlidersVertical, Search, Info, Plus, Minus } from "lucide-react";
+import { ClipboardCheck, TowerControl, ExternalLink, SlidersVertical, Search, Info, Plus, Minus, RotateCcw } from "lucide-react";
 import { ReactNode, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import clsx from "clsx";
@@ -160,10 +160,16 @@ const Controls = () => {
   const { zoomIn, zoomOut, resetTransform } = useControls();
 
   return (
-    <div className="tools">
-      <button onClick={() => zoomIn()}>+</button>
-      <button onClick={() => zoomOut()}>-</button>
-      <button onClick={() => resetTransform()}>x</button>
+    <div className="tools flex gap-2 pb-4">
+      <button onClick={() => zoomIn()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
+        <Plus size={18} />
+      </button>
+      <button onClick={() => zoomOut()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
+        <Minus size={18}/>
+      </button>
+      <button onClick={() => resetTransform()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
+        <RotateCcw size={18}/>
+      </button>
     </div>
   )
 }
