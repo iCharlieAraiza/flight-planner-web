@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import clsx from "clsx";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 
 export default function Home() {
@@ -134,13 +135,16 @@ export default function Home() {
             </div>
 
           </nav>
-          <section className="flex-1 bg-[#0f2335] h-full w-full min-w-fit p-4 relative overflow-auto">
+          <section className="flex-1 bg-[#0f2335] h-full w-full min-w-fit p-4 py-6 relative overflow-auto">
             <TransformWrapper
+              initialScale={1}
+              initialPositionX={60}
+              initialPositionY={0}
             >
               <Controls />
               <TransformComponent >
                 <img
-                  className="" style={{ transform: `scale(${zoom})` }}
+                  className="block mx-auto h-full" style={{ transform: `scale(${zoom})` }}
                   src="https://static.wixstatic.com/media/a27d24_3fc700c02ea24720adfc624bd1ed5d6c~mv2.jpg/v1/fill/w_901,h_669,al_c,q_85,enc_auto/a27d24_3fc700c02ea24720adfc624bd1ed5d6c~mv2.jpg"
                   alt="Logo" />
               </TransformComponent>
@@ -160,16 +164,25 @@ const Controls = () => {
   const { zoomIn, zoomOut, resetTransform } = useControls();
 
   return (
-    <div className="tools flex gap-2 pb-4">
+    <div className="tools flex gap-2 p-2 absolute backdrop-blur-[1px] bg-white/5 z-10">
       <button onClick={() => zoomIn()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
         <Plus size={18} />
       </button>
       <button onClick={() => zoomOut()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
-        <Minus size={18}/>
+        <Minus size={18} />
       </button>
-      <button onClick={() => resetTransform()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
-        <RotateCcw size={18}/>
-      </button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <div onClick={() => resetTransform()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
+              <RotateCcw size={18} />
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Reset position</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   )
 }
