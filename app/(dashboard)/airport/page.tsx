@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Sidebar } from "@/components/sidebar/sidebar";
 
 
 export default function Home() {
@@ -18,28 +19,8 @@ export default function Home() {
     <main className="w-screen h-screen bg-slate-500 flex overflow-hidden text-[11px] select-none">
 
       {/* Sidebar */}
-      <aside className="w-16 bg-[#1E384F] h-full">
-        <nav>
-          <div className="p-2">
-            <LogoSvg />
-          </div>
-          <ul>
-            <MenuItem active={true}>
-              <ClipboardCheck size={22} />
-              <p>Board</p>
-            </MenuItem>
-            <MenuItem>
-              <TowerControl size={22} />
-              <span>Airport</span>
-            </MenuItem>
-            <MenuItem>
-              <ClipboardCheck size={22} />
-              <span>Map</span>
-            </MenuItem>
-          </ul>
-        </nav>
-      </aside>
-
+      <Sidebar slug="airport" />
+ 
       {/* Main content section */}
 
       <section className="flex-1 bg-slate-300">
@@ -164,7 +145,7 @@ const Controls = () => {
   const { zoomIn, zoomOut, resetTransform } = useControls();
 
   return (
-    <div className="tools flex gap-2 p-2 absolute backdrop-blur-[1px] bg-white/5 z-10">
+    <div className="tools flex gap-2 p-2 fixed backdrop-blur-[1px] bg-white/5 z-10">
       <button onClick={() => zoomIn()} className="bg-[#375777] rounded p-1 cursor-pointer hover:opacity-90">
         <Plus size={18} />
       </button>
