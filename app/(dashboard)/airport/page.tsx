@@ -16,8 +16,7 @@ export default function Home() {
 
 
   return (
-    <main className="w-screen h-screen bg-slate-500 flex overflow-hidden text-[11px] select-none">
-
+    <>
       {/* Sidebar */}
       <Sidebar slug="airport" />
  
@@ -130,14 +129,11 @@ export default function Home() {
                   alt="Logo" />
               </TransformComponent>
             </TransformWrapper>
-
-
           </section>
         </section>
       </section>
 
-
-    </main>
+    </>
   );
 }
 
